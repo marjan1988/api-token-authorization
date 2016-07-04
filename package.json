@@ -12,6 +12,7 @@
     "bcrypt": "^0.8.7",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
+    "guid": "0.0.12",
     "mongoose": "^4.5.3"
   }
 }
