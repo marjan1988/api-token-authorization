@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({extended:true}));
 
+server.use('/', express.static('./public'));
+
 server.listen(3050, function(){
 	
 	console.log('Server listening on port 3050');

@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 var guid = require('guid');
-
+var middlewares = require('./middlewares');
 exports.initRoutes = function(server){
 	
 	console.log('API Routes setup');
@@ -11,6 +11,12 @@ exports.initRoutes = function(server){
 		res.send('Hello world');
 		
 	});
+	
+	server.get('/api/projects', middlewares.authenticate , function(req, res){
+		
+		res.send('Secret projects, you are: '+req.user.email);
+	});
+	
 	//============================= SERVER.POST -> API/LOGIN ===========================================//
 	server.post('/api/login', function(req, res){
 		
@@ -55,7 +61,7 @@ exports.initRoutes = function(server){
 					//add token to the user with push and save to database
 					});
 					
-					res.sendStatus(200);
+					//res.sendStatus(200);
 				}else{
 					//wrong password
 					res.status(400).send('Email or password is wrong');
